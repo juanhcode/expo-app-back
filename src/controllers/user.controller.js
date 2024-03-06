@@ -1,4 +1,5 @@
-const userService = require('../services/user.service')
+const userService = require('../services/user.service');
+const generateToken = require('../helpers/generateToken');
 const login = async (req, res) => {
     const { user, password } = req.body;
     const isUser = {
