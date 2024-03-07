@@ -20,8 +20,28 @@ const login = async (newUser) => {
     }
 }
 
+const createUser = async (newUser) => {
+    const { password, username } = newUser;
+    const passwordHash = await bcrypt.hash(password, 10);
+    const user = new User({
+        username,
+        password: passwordHash,
+    });
+    try {
+        await user.save();
+        return true;
+    } catch (error) {
+        return error;
+    }
+}
+const getUserById = async (id) => {
+    const user = User.findById(id);
+    return user;
+}
 
 
 module.exports = {
-    login
+    login,
+    createUser,
+    getUserById
 }

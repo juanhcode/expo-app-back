@@ -22,6 +22,23 @@ const login = async (req, res) => {
     }
 }
 
+const register = (req, res) => {
+    const { password, username } = req.body;
+    const user = {
+        username,
+        password
+    }
+    const response = userService.createUser(user);
+    if (response) {
+        res.status(201).send({
+            message: "Usuario Registrado",
+        })
+    } else {
+        res.send(response);
+    }
+}
+
 module.exports = {
+    register,
     login
 }
