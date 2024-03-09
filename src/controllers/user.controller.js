@@ -18,6 +18,10 @@ const login = async (req, res) => {
                 token,
             });
             return;
+        }else{
+            res.status(401).send({
+                message: "Datos incorrectos"
+            });
         }
     }
 }

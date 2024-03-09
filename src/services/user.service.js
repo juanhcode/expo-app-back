@@ -1,14 +1,17 @@
 const User = require('../database/models/user.model');
 const bcrypt = require('bcrypt');
 const login = async (newUser) => {
+    console.log(newUser);
     const { user, password } = newUser;
     try {
         const userFound = await User.findOne().where({ username: user });
         if (userFound == null) {
             return null;
         }
-        const isPassword = bcrypt.compare(password, userFound.password);
-        if (!userFound && !isPassword) {
+        const isPassword = await bcrypt.compare(password, userFound.password);
+        console.log(isPassword);
+        console.log(userFound);
+        if (!isPassword) {
             return false;
         }
         return {
