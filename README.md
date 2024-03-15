@@ -1,3 +1,3 @@
 # API Expo
 
-Login and register
+Endpoints Login and register
